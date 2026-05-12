@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Enrolment</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F5F2EC;
+    --cream-dark: #EAE5DA;
+    --teal: #4A7C6F;
+    --teal-dark: #3A6259;
+    --teal-light: #E0EDEA;
+    --text-main: #1E2A27;
+    --text-muted: #4A5550;
+    --text-teal: #2E5049;
+    --white: #FFFFFF;
+    --border: #C4D4CF;
+    --focus-ring: #4A7C6F;
+    --badge-bg: #D0E6E0;
+    --badge-text: #1E4038;
+    --nav-h: 64px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--cream);
+  }
+
+  body {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    background: var(--cream);
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    top: -999px;
+    left: 0;
+    background: var(--teal);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 0 0 8px 8px;
+    z-index: 1000;
+  }
+
+  .skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--white);
+    outline-offset: 2px;
+  }
+
+  /* Focus rings — every interactive element */
+  *:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Navigation */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1.5px solid var(--border);
+    height: var(--nav-h);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 100%;
+  }
+
+  .site-name {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--teal-dark);
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  nav a {
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  nav a:hover {
+    background: var(--teal-light);
+    color: var(--teal-dark);
+  }
+
+  nav a[aria-current="page"] {
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  /* Layout */
+  main {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  article + article {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1.5px solid var(--border);
+  }
+
+  /* Headings */
+  h1 {
+    font-family: 'Lexend', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text-teal);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-teal);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Paragraphs — max 3-4 sentences, then break */
+  p {
+    margin-bottom: 1.1rem;
+    max-width: 65ch;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Lead text */
+  .lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  /* Numbered tips with badges */
+  .tips-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .tips-list li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .tip-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    font-family: 'Lexend', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 50%;
+    margin-top: 0.15rem;
+  }
+
+  .tip-text {
+    flex: 1;
+  }
+
+  .tip-text strong {
+    display: block;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-teal);
+    margin-bottom: 0.2rem;
+  }
+
+  /* Info box */
+  .info-box {
+    background: var(--teal-light);
+    border-left: 4px solid var(--teal);
+    border-radius: 0 8px 8px 0;
+    padding: 1.1rem 1.3rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-box p {
+    margin: 0;
+    color: var(--text-teal);
+    font-size: 0.97rem;
+  }
+
+  /* CTA button */
+  .cta-group {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 2px solid var(--teal);
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    border-color: var(--teal-dark);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--teal-dark);
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 2px solid var(--teal);
+    transition: background 0.15s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--teal-light);
+  }
+
+  /* Contact link */
+  .contact-link {
+    color: var(--teal-dark);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .contact-link:hover {
+    color: var(--teal);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--cream-dark);
+    border-top: 1.5px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  footer a {
+    color: var(--teal-dark);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.15rem; }
+    nav a { font-size: 0.82rem; padding: 0.35rem 0.6rem; }
+    .site-name { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header>
+  <div class="nav-inner">
+    <a class="site-name" href="/">Calm Corner</a>
+    <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/enrolment" aria-current="page">Enrolment</a>
+      <a href="/courses">Courses</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <article id="intro">
+    <h1>How to enrol in a course</h1>
+    <p class="lead">Signing up for a course at Calm Corner is simple. This page explains each step in plain language.</p>
+    <p>You do not need any previous experience to apply. You do not need to call anyone. You can complete the whole process online, at your own pace.</p>
+    <p>If you get stuck at any point, you can <a class="contact-link" href="mailto:hello@calmcorner.example.com">send an email to Calm Corner</a> and someone will reply within two working days.</p>
+  </article>
+
+  <article id="before-you-start">
+    <h2>Before you start</h2>
+    <p>Check that you have the following things ready. Having them close by will make the process faster.</p>
+
+    <ol class="tips-list" aria-label="Things to prepare before enrolment">
+      <li>
+        <span class="tip-badge" aria-label="Step 1">1</span>
+        <div class="tip-text">
+          <strong>Your email address</strong>
+          You will receive a confirmation message after you apply. Make sure you can access that inbox.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 2">2</span>
+        <div class="tip-text">
+          <strong>A form of payment</strong>
+          We accept debit cards, credit cards, and bank transfer. Fees are shown clearly on each course page before you commit.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 3">3</span>
+        <div class="tip-text">
+          <strong>About ten minutes</strong>
+          The form is short. Most people complete it in under ten minutes.
+        </div>
+      </li>
+    </ol>
+  </article>
+
+  <article id="how-to-enrol">
+    <h2>How to enrol, step by step</h2>
+    <p>Follow these steps in order. Each step has one action.</p>
+
+    <ol class="tips-list" aria-label="Enrolment steps">
+      <li>
+        <span class="tip-badge" aria-label="Step 1">1</span>
+        <div class="tip-text">
+          <strong>Choose a course</strong>
+          Go to our <a class="contact-link" href="/courses">courses page</a>. Each course has a description, a start date, and a fee listed clearly.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 2">2</span>
+        <div class="tip-text">
+          <strong>Click "Enrol now"</strong>
+          You will see this button on the course page. It takes you to the enrolment form.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 3">3</span>
+        <div class="tip-text">
+          <strong>Fill in your details</strong>
+          Enter your name and email address. You can also add any access needs or questions in the notes field.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 4">4</span>
+        <div class="tip-text">
+          <strong>Choose how to pay</strong>
+          Select card or bank transfer. You will pay after we confirm your place.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 5">5</span>
+        <div class="tip-text">
+          <strong>Submit the form</strong>
+          Press "Send my application". You will get a confirmation email within one hour.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 6">6</span>
+        <div class="tip-text">
+          <strong>Wait for approval</strong>
+          We review every application within two working days. We will email you to confirm your place or let you know if the course is full.
+        </div>
+      </li>
+      <li>
+        <span class="tip-badge" aria-label="Step 7">7</span>
+        <div class="tip-text">
+          <strong>Complete your payment</strong>
+          Once your place is confirmed, follow the link in our email to pay. Your place is not secured until payment is received.
+        </div>
+      </li>
+    </ol>
+
+    <div class="cta-group">
+      <a class="btn-primary" href="/courses">Browse courses</a>
+      <a class="btn-secondary" href="/contact">Ask a question first</a>
+    </div>
+  </article>
+
+  <article id="access-needs">
+    <h2>Access needs and adjustments</h2>
+    <p>We want every student to feel comfortable. If you need any adjustments, please tell us when you apply.</p>
+    <p>Common adjustments we can make include: extra time for written tasks, printed handouts with larger text, a quieter room, and note-taking support. This list is not complete. If you have a different need, ask us.</p>
+
+    <div class="info-box" role="note">
+      <p>You do not need to share a diagnosis or a medical document. Telling us what helps you is enough.</p>
+    </div>
+
+    <p>If your needs change after you have enrolled, <a class="contact-link" href="mailto:hello@calmcorner.example.com">send an email to Calm Corner</a> as soon as you can. We will update your record.</p>
+  </article>
+
+  <article id="cancellation">
+    <h2>Cancellations and refunds</h2>
+    <p>You can cancel your place up to seven days before the course starts and receive a full refund. After that, we offer a credit towards a future course.</p>
+    <p>If Calm Corner has to cancel a course, every student gets a full refund within five working days. We will contact you by email first.</p>
+
+    <div class="info-box" role="note">
+      <p>To cancel, <a class="contact-link" href="mailto:hello@calmcorner.example.com">send an email to Calm Corner</a> with the subject line "Cancellation" and your booking reference number.</p>
+    </div>
+  </article>
+
+  <article id="faq">
+    <h2>Common questions</h2>
+
+    <p><strong>Can I enrol for someone else?</strong><br>
+    Yes. Fill in the form with the student's name and your email address. Write a note explaining the situation.</p>
+
+    <p><strong>What if the course is full?</strong><br>
+    We will add you to a waiting list. If a place opens up, we will email you first.</p>
+
+    <p><strong>Do you offer bursaries or reduced fees?</strong><br>
+    Yes. <a class="contact-link" href="mailto:hello@calmcorner.example.com">Send an email to Calm Corner</a> before you apply. We review each request and reply within three working days.</p>
+
+    <p><strong>What happens if I miss a session?</strong><br>
+    Most courses have session notes you can read afterwards. Contact your tutor to find out what is available for your specific course.</p>
+  </article>
+
+</main>
+
+<footer>
+  <p>Questions? <a href="mailto:hello@calmcorner.example.com">Send an email to Calm Corner</a> — we reply within two working days.</p>
+</footer>
+
+</body>
+</html>

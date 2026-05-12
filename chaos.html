@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zz-CHAOS">
+<head>
+  <meta charset="UTF-8" />
+  <!-- RULE BROKEN: No viewport meta = broken on mobile; also, who cares -->
+  <title>CLICK HERE!!! 🔥🔥 YOU WON A PRIZE!!! 🎉💥 LIMITED TIME!!!!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Comic+Neue:wght@700&family=Pacifico&family=Bungee+Shade&display=swap" rel="stylesheet"/>
+  <style>
+    /* ============================================================
+       RULES BROKEN — chaos website
+       Each numbered comment matches the explanation doc
+    ============================================================ */
+
+    /* BROKEN RULE 1: Seizure-inducing flashing background animation */
+    @keyframes seizure {
+      0%   { background-color: #ff0000; }
+      10%  { background-color: #00ff00; }
+      20%  { background-color: #0000ff; }
+      30%  { background-color: #ffff00; }
+      40%  { background-color: #ff00ff; }
+      50%  { background-color: #00ffff; }
+      60%  { background-color: #ff8800; }
+      70%  { background-color: #8800ff; }
+      80%  { background-color: #00ff88; }
+      90%  { background-color: #ff0088; }
+      100% { background-color: #ff0000; }
+    }
+    /* BROKEN RULE 2: Spinning, bouncing, moving text everywhere */
+    @keyframes spin     { from { transform: rotate(0deg);   } to { transform: rotate(360deg); } }
+    @keyframes bounce   { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
+    @keyframes shake    { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-10px)} 40%{transform:translateX(10px)} 60%{transform:translateX(-8px)} 80%{transform:translateX(8px)} }
+    @keyframes marquee  { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
+    @keyframes zoom     { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4)} }
+    @keyframes colorTxt { 0%{color:#f00}20%{color:#0f0}40%{color:#00f}60%{color:#ff0}80%{color:#f0f}100%{color:#0ff} }
+    @keyframes floatIt  { 0%,100%{top:10px;left:10px} 25%{top:80vh;left:80vw} 50%{top:40vh;left:20vw} 75%{top:10vh;left:60vw} }
+
+    /* BROKEN RULE 3: No skip link, bad base styles */
+    * { box-sizing: border-box; }
+
+    body {
+      /* BROKEN: Flashing background, max 3 flashes/sec is already a WCAG violation */
+      animation: seizure 0.5s infinite;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E💀%3C/text%3E%3C/svg%3E"), auto;
+      overflow-x: hidden;
+      margin: 0;
+      /* BROKEN: Low text contrast will be a mess when bg flashes */
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    /* BROKEN RULE 4: Fixed popup that can't be dismissed easily */
+    .evil-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background: linear-gradient(45deg, #ff0000, #ff8800);
+      border: 6px solid lime;
+      padding: 2rem;
+      width: 400px;
+      max-width: 90vw;
+      text-align: center;
+      box-shadow: 0 0 0 4px yellow, 0 0 0 8px red, 0 0 60px rgba(255,0,0,0.9);
+      animation: shake 0.3s infinite, zoom 1s infinite;
+      font-family: 'Bungee Shade', sans-serif;
+    }
+    .evil-popup h2 {
+      font-size: 2rem;
+      color: yellow;
+      animation: colorTxt 0.3s infinite;
+      text-shadow: 3px 3px 0 black, -3px -3px 0 black;
+    }
+    .popup-btn {
+      background: lime;
+      color: #000;
+      border: 4px solid purple;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin: 0.25rem;
+      font-family: 'Boogaloo', sans-serif;
+      animation: bounce 0.4s infinite;
+    }
+    /* BROKEN RULE 5: The "close" button does nothing useful */
+    .popup-close {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 0.5rem;   /* tiny, barely visible */
+      color: rgba(255,255,255,0.2);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* BROKEN RULE 6: Auto-playing audio (simulated with visible button) */
+    .audio-bar {
+      background: #000;
+      color: lime;
+      font-family: 'Pacifico', cursive;
+      padding: 0.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      /* moves left-right */
+      animation: shake 0.2s infinite;
+    }
+
+    /* BROKEN RULE 7: Marquee-style scrolling text */
+    .marquee-wrap {
+      background: #000;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.4rem 0;
+      border-top: 4px solid red;
+      border-bottom: 4px solid yellow;
+    }
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 4s linear infinite;
+      color: lime;
+      font-size: 1.1rem;
+      font-family: 'Boogaloo', sans-serif;
+    }
+
+    /* BROKEN RULE 8: Header — inconsistent, overwhelming */
+    header {
+      padding: 1rem;
+      text-align: center;
+      background: linear-gradient(90deg, #ff0066, #6600ff, #00ffcc, #ff9900);
+      background-size: 400% 400%;
+      position: relative;
+    }
+    header h1 {
+      font-family: 'Bungee Shade', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      /* BROKEN: text same colour family as flashing bg = illegible */
+      color: #ffff00;
+      text-shadow: 4px 4px 0 #ff0000, -4px -4px 0 #00ff00, 0 0 30px white;
+      animation: shake 0.2s infinite, colorTxt 0.3s infinite;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    /* BROKEN: Spinning decoration in header */
+    .spinner-deco {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 3rem;
+      animation: spin 0.5s linear infinite;
+      display: inline-block;
+    }
+
+    /* BROKEN RULE 9: Navigation — hidden, inconsistent, no labels */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      background: #111;
+      padding: 4px;
+      justify-content: center;
+    }
+    nav a {
+      /* BROKEN: vague link text, hover changes position/size */
+      color: #000;
+      background: lime;
+      padding: 4px 8px;
+      text-decoration: none;
+      font-size: 0.7rem;
+      border: 2px dashed red;
+      animation: bounce 0.5s infinite;
+      transition: none;
+    }
+    nav a:nth-child(even) { animation: spin 1s linear infinite; }
+    nav a:hover { font-size: 2rem; background: red; color: yellow; }
+
+    /* BROKEN RULE 10: Main layout — no visual hierarchy, everything same weight */
+    main { padding: 0.5rem; }
+
+    /* BROKEN RULE 11: Wall of tiny text — no spacing, no structure */
+    .text-wall {
+      font-size: 0.65rem;
+      line-height: 1.1;
+      color: #cccccc;
+      column-count: 4;
+      column-gap: 2px;
+      background: #1a1a1a;
+      padding: 0.25rem;
+      /* BROKEN: text same-ish colour as background */
+      border: 1px solid #1f1f1f;
+    }
+
+    /* BROKEN RULE 12: Image-as-text, no alt, decorative items marked as content */
+    .bad-image-section {
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+    }
+
+    /* BROKEN RULE 13: Giant, screaming CTA blocks */
+    .cta-block {
+      background: linear-gradient(135deg, #ff0000, #ff8800, #ffff00);
+      padding: 1rem;
+      text-align: center;
+      border: 8px dashed purple;
+      margin: 0.5rem 0;
+      animation: zoom 0.4s infinite;
+    }
+    .cta-block h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 3px 3px 0 #000;
+      animation: colorTxt 0.2s infinite;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(45deg, lime, yellow);
+      color: #000;
+      padding: 1rem 3rem;
+      font-size: 1.5rem;
+      text-decoration: none;
+      font-family: 'Bungee Shade', sans-serif;
+      border: 4px solid red;
+      animation: bounce 0.3s infinite;
+      margin: 0.25rem;
+    }
+
+    /* BROKEN RULE 14: Floating random elements — unpredictable layout */
+    .floater {
+      position: fixed;
+      animation: floatIt 4s ease-in-out infinite;
+      font-size: 3rem;
+      pointer-events: none;
+      z-index: 500;
+    }
+
+    /* BROKEN RULE 15: Too-small form, horrible contrast, vague labels */
+    form {
+      background: #222;
+      padding: 0.25rem;
+      font-size: 0.6rem;
+      color: #333; /* nearly invisible on dark bg */
+    }
+    form input {
+      background: #1a1a1a;
+      color: #1f1f1f; /* text nearly invisible */
+      border: 1px solid #222;
+      width: 60px;
+      font-size: 0.6rem;
+    }
+    form label { color: #2a2a2a; } /* near-invisible */
+    form button {
+      background: #1a1a1a;
+      color: #1b1b1b;
+      border: none;
+      font-size: 0.5rem;
+    }
+
+    /* BROKEN RULE 16: Cookie / notification banner - covers content, no dismiss */
+    .fake-cookie {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(90deg, red, blue, green, yellow);
+      animation: seizure 0.3s infinite;
+      padding: 1rem;
+      font-family: 'Boogaloo', sans-serif;
+      font-size: 0.8rem;
+      color: white;
+      text-align: center;
+      z-index: 8888;
+    }
+
+    /* BROKEN RULE 17: Tooltips that block content */
+    .tooltip-btn {
+      position: relative;
+      background: orange;
+      border: none;
+      padding: 0.5rem;
+      cursor: help;
+      font-family: 'Comic Neue', cursive;
+    }
+    .tooltip-btn:hover::after {
+      content: "HAHAHA this tooltip is ENORMOUS and covers everything you were reading and you cannot close it lol goodbye";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255, 0, 0, 0.95);
+      color: white;
+      font-size: 3rem;
+      display: grid;
+      place-items: center;
+      z-index: 99999;
+      padding: 2rem;
+    }
+
+    /* cards section for "content" */
+    .chaos-grid {
+      display: grid;
+      grid-template-columns: 3fr 0.5fr 2fr 1fr;
+      gap: 2px;
+    }
+    .chaos-card {
+      padding: 0.5rem;
+      font-size: 0.7rem;
+    }
+    .chaos-card:nth-child(1) { background: red; color: red; } /* text invisible */
+    .chaos-card:nth-child(2) { background: lime; color: limegreen; font-size: 0.4rem; }
+    .chaos-card:nth-child(3) { background: navy; color: #000011; }
+    .chaos-card:nth-child(4) { background: yellow; color: white; }
+
+    footer {
+      background: #000;
+      color: #111; /* invisible text */
+      font-size: 0.4rem;
+      padding: 2px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BROKEN: Floating emoji that moves around screen, unpredictably -->
+  <div class="floater" aria-hidden="false" role="img" alt="">🎪</div>
+
+  <!-- BROKEN RULE 4: Immediate popup on page load, can't be properly dismissed -->
+  <div class="evil-popup" role="dialog" aria-labelledby="popup-title">
+    <button class="popup-close" onclick="this.parentElement.style.display='none'" aria-label=".">·</button>
+    <h2 id="popup-title">⚠️ URGENT!! YOU MUST ACT NOW!! ⚠️</h2>
+    <p style="color:white;font-size:0.9rem;">Your computer has 47 viruses!!<br>Also you won a cruise!!<br>Limited time!! Act in 3 seconds!!</p>
+    <button class="popup-btn">YES! CLAIM PRIZE!!!</button>
+    <!-- BROKEN: "No" button disguised to also say yes -->
+    <button class="popup-btn" style="background:red;color:white;">DEFINITELY NO PRIZE (yes)</button>
+  </div>
+
+  <!-- BROKEN RULE 6: Simulated always-on audio bar -->
+  <div class="audio-bar" role="none">
+    🔊 NOW PLAYING: VERY LOUD TECHNO.MP3 — AUTO-STARTED — VOLUME: 💯 MAX
+    <span style="animation:colorTxt 0.1s infinite;font-size:1.5rem;">♫♪♬</span>
+  </div>
+
+  <!-- BROKEN RULE 7: Scrolling marquee — banned in modern design, seizure risk -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-inner">
+      🚨 BREAKING NEWS: EVERYTHING IS ON SALE 🚨 ACT NOW 🚨 LIMITED TIME 🚨 CLICK EVERYTHING 🚨 YOUR PRIZE EXPIRES IN 00:00 🚨 BUY BUY BUY 🚨 FLASHING LIGHTS 🚨
+    </div>
+  </div>
+
+  <!-- BROKEN RULE 8: Header — chaotic, illegible, spinning, zero structure -->
+  <header role="none">
+    <h1>WELC0ME!!! TO THE!!!<br>BESTEST WEBSIT EVER!!!1!</h1>
+    <p style="font-family:'Pacifico';color:red;font-size:1.5rem;animation:bounce 0.2s infinite;">
+      🎉 Click HERE for AMAZING deals and also PRIZES 🎉
+    </p>
+    <span class="spinner-deco" aria-hidden="true">💥</span>
+  </header>
+
+  <!-- BROKEN RULE 9: Nav — vague link text, spinning, zero labels -->
+  <nav aria-label="i dunno lol">
+    <!-- BROKEN: "click here" x5, no description of destination -->
+    <a href="#">click here</a>
+    <a href="#">click here</a>
+    <a href="#">click here</a>
+    <a href="#">click here</a>
+    <a href="#">also click here</a>
+    <a href="#">🤷</a>
+  </nav>
+
+  <main>
+
+    <!-- BROKEN: CTA block, massive, zoom-animating, overwhelming -->
+    <div class="cta-block">
+      <h2>YOU NEED THIS!!! NOW!!!!</h2>
+      <p style="color:white;font-size:0.8rem;animation:shake 0.2s infinite;">An AMAZING product that will CHANGE YOUR LIFE but we won't say what it is!!!</p>
+      <!-- BROKEN: Multiple competing CTAs of equal visual weight -->
+      <a class="cta-btn" href="#">BUY NOW!!!!!</a>
+      <a class="cta-btn" href="#" style="background:red;color:white;">NO WAIT BUY THIS!!!</a>
+      <a class="cta-btn" href="#" style="background:purple;color:lime;">OR MAYBE THIS ONE?</a>
+    </div>
+
+    <!-- BROKEN RULE 10: No visual hierarchy — everything same importance -->
+    <div class="chaos-grid">
+      <!-- BROKEN: text invisible (same colour as background) -->
+      <div class="chaos-card">
+        <h2>IMPORTANT INFORMATION</h2>
+        <p>You literally cannot read this because the text and background are the same colour. This is important information.</p>
+      </div>
+      <div class="chaos-card">
+        <h3>Also important</h3>
+        <p>Tiny text in a tiny column. Nobody can read this either.</p>
+      </div>
+      <div class="chaos-card">
+        <h2>Still important</h2>
+        <p>Navy text on almost-black background. Accessibility? Never heard of her.</p>
+      </div>
+      <div class="chaos-card">
+        <h2>MORE STUFF</h2>
+        <p>White text on yellow. Classic mistake.</p>
+      </div>
+    </div>
+
+    <!-- BROKEN RULE 11: Wall of text, tiny font, no paragraph breaks -->
+    <div class="text-wall" aria-label="important legal information">
+      Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum By clicking anything on this site you agree to receive 40 emails per day and also to give us your first-born child and your bank details and your cat Photos and content legally belong to us now congrats Terms may change at any time without notice and also this text is intentionally illegible because we are very evil and we enjoy it sincerely the website.
+    </div>
+
+    <!-- BROKEN RULE 12: Images with no alt text -->
+    <div class="bad-image-section">
+      <!-- BROKEN: Decorative emoji used as "alt text" substitutes -->
+      <div style="width:80px;height:80px;background:linear-gradient(red,blue);border-radius:8px;" role="img">
+        <!-- no alt attribute anywhere -->
+      </div>
+      <div style="width:120px;height:80px;background:lime;display:grid;place-items:center;font-size:2rem;">?</div>
+      <!-- BROKEN: Image described as "image" which helps no one -->
+      <div style="width:80px;height:80px;background:orange;" role="img" aria-label="image">
+      </div>
+    </div>
+
+    <!-- BROKEN RULE 13: Hover tooltip that takes over entire screen -->
+    <div style="padding:1rem;background:#333;text-align:center;">
+      <p style="color:white;margin-bottom:0.5rem;">Hover below for helpful information 😈</p>
+      <button class="tooltip-btn">HOVER ME FOR INFO</button>
+    </div>
+
+    <!-- BROKEN RULE 15: Form with horrible usability -->
+    <form onsubmit="return false;">
+      <!-- BROKEN: No label association, placeholder-as-label -->
+      <label>e</label>
+      <input type="text" placeholder="your email maybe idk" />
+      <!-- BROKEN: Password shown as text, label invisible -->
+      <label>p</label>
+      <input type="text" placeholder="password (yes in plaintext)" />
+      <!-- BROKEN: Submit button indistinguishable from background -->
+      <button type="submit">ok</button>
+    </form>
+
+    <!-- BROKEN: One more screaming CTA -->
+    <div style="background:linear-gradient(45deg,#f00,#00f);padding:2rem;text-align:center;animation:zoom 0.3s infinite;margin-top:0.5rem;">
+      <h2 style="font-family:'Bungee Shade';color:yellow;font-size:3rem;animation:shake 0.1s infinite;text-shadow:0 0 20px red;">
+        WHY ARE YOU STILL READING<br>SCROLL DOWN AND CLICK STUFF
+      </h2>
+    </div>
+
+  </main>
+
+  <!-- BROKEN RULE 16: Cookie banner that covers everything, no dismiss -->
+  <div class="fake-cookie" aria-live="assertive">
+    🍪 We use 47,000 cookies including cookies that watch you sleep. By existing on this planet you have already agreed. No close button. Deal with it. Also here is some more flashing. 🍪
+  </div>
+
+  <!-- BROKEN RULE 17: Footer text invisible -->
+  <footer>
+    <p>© 2026 Evil Website Inc. All your data are belong to us. Contact: shouting into the void. Accessibility score: 0/100. Autism-friendly: absolutely not. We are sorry to nobody.</p>
+  </footer>
+
+  <!-- BROKEN: Auto-redirect after 5 seconds would happen here -->
+  <script>
+    // BROKEN: Unexpected page behaviour — constantly moves focus to random places
+    setInterval(() => {
+      const els = document.querySelectorAll('a, button');
+      if (els.length) {
+        // We *simulate* focus theft (commented so it doesn't totally destroy demo)
+        // els[Math.floor(Math.random() * els.length)].focus();
+      }
+    }, 2000);
+
+    // BROKEN: Alert spam — uncomment in real "chaos" scenario
+    // setTimeout(() => alert("CONGRATULATIONS YOU WON"), 500);
+    // setTimeout(() => alert("SERIOUSLY THOUGH CLICK SOMETHING"), 2000);
+    // setTimeout(() => alert("WHY HAVEN'T YOU CLICKED YET"), 4000);
+
+    // BROKEN: Right-click disabled
+    document.addEventListener('contextmenu', e => e.preventDefault());
+  </script>
+
+</body>
+</html>
